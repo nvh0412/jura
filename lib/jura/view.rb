@@ -1,0 +1,1 @@
+require "jura/view/help"

@@ -1,5 +1,6 @@
-class Jura
-  def self.hi
-    puts "Jura Guarrr!!!!"
-  end
-end
+require "json"
+
+require "jura/version"
+require "jura/utils"
+require "jura/view"
+require "jura/application"
