@@ -1,0 +1,1 @@
+require "jura/component/help"
