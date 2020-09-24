@@ -2,6 +2,7 @@
 require 'jura/command/board'
 require 'jura/command/help'
 require 'jura/command/exit'
+require 'jura/command/invalid'
 
 module Jura
   module Command
@@ -21,10 +22,18 @@ module Jura
       command = COMMANDS[cmd_name]
 
       if command.nil?
-        # TODO: return and execute invalid command error
+        return Command::Invalid.execute("Command not found: #{command.inspect}. Run #{"help".inspect} for more informations")
       end
 
       command.call(sub_cmd, args)
+    end
+
+    def generate_suggestions(buffer, command_buffer)
+      commands = {
+        "board" => %[add list select]
+      }
+
+      commands.keys.grep(/^#{Regexp.escape(buffer)}/)
     end
   end
 end

@@ -2,10 +2,9 @@
 
 module Jura
   module Command
-    class Board
-      def self.execute!(sub_cmd, args)
-        p sub_cmd
-        p args
+    class Invalid
+      def self.execute(message)
+        puts message
       end
     end
   end
