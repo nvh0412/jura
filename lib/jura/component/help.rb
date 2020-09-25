@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-#
+
 module Jura
   module Component
     class Help
@@ -7,10 +7,10 @@ module Jura
         <<~TEMPLATE.strip
           #{Utils.format_bold(Utils.paint("Jura v#{Jura::VERSION} - Interactive CLI application for Jira", :blue))}
 
-
           #{Utils.format_bold('# Miscellaneous commands:')}
 
           help  - Display this help message
+          exit  - Escape from Jurassic park
 
 
         TEMPLATE
