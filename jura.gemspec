@@ -15,4 +15,5 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = "~> 2.5"
   s.add_runtime_dependency "tty-prompt", "~> 0.22"
+  s.add_runtime_dependency "httparty", "~> 0.18.1"
 end

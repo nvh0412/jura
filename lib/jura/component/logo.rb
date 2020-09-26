@@ -2,7 +2,7 @@
 
 module Jura
   module Component
-    class Help
+    class Logo
       def self.render
         <<~TEMPLATE
 
@@ -13,12 +13,7 @@ module Jura
    ╚█████╔╝╚██████╔╝██║  ██║██║  ██║              ╚█████╔╝██║██║  ██║██║  ██║    ██║  ██║╚██████╔╝██████╔╝   ██║
     ╚════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝               ╚════╝ ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝    ╚═╝  ╚═╝ ╚═════╝ ╚═════╝    ╚═╝
 
-      #{Utils.format_bold(Utils.paint("Jura v#{Jura::VERSION} - Interactive CLI application for Jira", :blue))}
-
-      #{Utils.format_bold('# Miscellaneous commands:')}
-
-      help  - Display this help message
-      exit  - Escape from Jurassic park
+Jura - The interactive CLI application for Jira
 
         TEMPLATE
       end

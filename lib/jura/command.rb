@@ -25,7 +25,9 @@ module Jura
         return Command::Invalid.execute("Command not found: #{command.inspect}. Run #{"help".inspect} for more informations")
       end
 
+      puts '' # Empty line
       command.call(sub_cmd, args)
+      puts '' # Empty line
     end
 
     def generate_suggestions(buffer, command_buffer)

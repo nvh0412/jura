@@ -4,8 +4,9 @@ module Jura
   module Command
     class Board
       def self.execute!(sub_cmd, args)
-        p sub_cmd
-        p args
+        boards = Api::Board.all
+
+        puts Component::Board.render(boards)
       end
     end
   end
