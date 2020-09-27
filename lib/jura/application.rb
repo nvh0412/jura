@@ -19,7 +19,13 @@ module Jura
 
       prompt.say(Jura::Component::Logo.render)
 
-      config_credentials(prompt)
+      config = load_config
+
+      if config.empty?
+        config_credentials(prompt)
+      else
+        prompt.say("Welcome back!, " + Utils.paint(config['email'], :green) + "\n\n")
+      end
 
       loop do
         command_buffer = Readline.readline("\e[15;48;5;27m Jura Guarrr! \e[0m > ", true)
@@ -30,6 +36,16 @@ module Jura
       Command::Exit.execute
     rescue HTTParty::ResponseError => e
       Command::Exit.execute
+    end
+
+    def load_config
+      config_path = File.expand_path(CONFIG_FILE_PATH)
+
+      if File.exist?(config_path)
+        JSON.parse(File.read(config_path))
+      else
+        {}
+      end
     end
 
     def config_credentials(prompt)
@@ -50,8 +66,10 @@ module Jura
       end
 
       if Jura::Api::Token.verify?(email, token)
-        prompt.say("Logged in as #{email}", color: :green)
-        p ''
+        prompt.say("Logged in as #{email}\n", color: :green)
+        prompt.say("Configuration has been saved to " + Utils.paint(CONFIG_FILE_PATH, :green) + "\n")
+
+        File.write(File.expand_path(CONFIG_FILE_PATH), { email: email, token: Base64.urlsafe_encode64("#{email}:#{token}") }.to_json)
       else
         prompt.say("Your token or email is invalid", color: :red)
       end

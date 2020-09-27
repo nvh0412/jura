@@ -14,7 +14,6 @@ module Jura
       headers ({
         "Accept" => "application/json",
         "Content-Type" => "application/json",
-        "Authorization" => "Basic #{Base64.urlsafe_encode64('')}"
       })
 
       raise_on [401, 404, 500]
