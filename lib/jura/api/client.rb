@@ -11,17 +11,13 @@ module Jura
 
       base_uri 'https://employmenthero.atlassian.net/rest/agile/1.0'
 
-      raise_on [401, 404, 500]
+      headers ({
+        "Accept" => "application/json",
+        "Content-Type" => "application/json",
+        "Authorization" => "Basic #{Base64.urlsafe_encode64('')}"
+      })
 
-      def set_credentials(email, token)
-        self.instance_variable_set('@default_options', {
-          header: {
-            "Authorization" => "Basic #{Base64.urlsafe_encode64("#{email}:#{token}")}",
-            "Accept" => "application/json",
-            "Content-Type" => "application/json"
-          }
-        })
-      end
+      raise_on [401, 404, 500]
     end
   end
 end

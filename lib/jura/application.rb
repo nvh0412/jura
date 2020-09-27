@@ -28,21 +28,33 @@ module Jura
       end
     rescue Interrupt
       Command::Exit.execute
+    rescue HTTParty::ResponseError => e
+      Command::Exit.execute
     end
 
     def config_credentials(prompt)
       email = prompt.ask("Jira account email: ") { |q| q.validate :email }
-      token = prompt.ask("Jira token (Visit https://id.atlassian.com/manage-profile/security/api-tokens): ") do|q|
+
+      has_token = prompt.yes?("Already have your JIRA token?")
+
+      unless has_token
+        prompt.say("\nOpening Your default browser")
+        prompt.warn("> Warning: If browser does not open, visit")
+        prompt.warn("> https://id.atlassian.com/manage-profile/security/api-tokens to obtain your token\n")
+
+        system "open https://id.atlassian.com/manage-profile/security/api-tokens"
+      end
+
+      token = prompt.mask("Input your Jira token: ") do|q|
         q.required true
       end
 
-      Jura::Api::Client.instance.set_credentials(email, token)
-
-      if Jura::Api::Token.verify!
+      if Jura::Api::Token.verify?(email, token)
+        prompt.say("Logged in as #{email}", color: :green)
+        p ''
       else
+        prompt.say("Your token or email is invalid", color: :red)
       end
-    rescue HTTParty::ResponseError => e
-      debugger
     end
   end
 end
