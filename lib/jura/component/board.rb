@@ -14,7 +14,7 @@ module Jura
       private
 
       def self.render_board(board)
-        "#{board['id']} - #{board['location']['displayName']}"
+        "#{board['id']} - #{board['key']}"
       end
     end
   end

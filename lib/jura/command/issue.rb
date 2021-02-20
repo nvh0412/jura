@@ -1,17 +1,14 @@
 # frozen_string_literal: true
 
-require 'jura/command/board/select'
+require 'jura/command/issue/list'
 
 module Jura
   module Command
-    module Board
+    module Issue
       def self.execute!(sub_cmd, args)
         case sub_cmd
         when "list"
-          boards = Api::Board.all
-          puts Component::Board.render(boards)
-        when "select"
-          Command::Board::Select.execute
+          Command::Issue::List.execute!(sub_cmd, args)
         else
           Command::Invalid.execute("Command not found: #{command.inspect}. Run #{"help".inspect} for more informations")
         end
