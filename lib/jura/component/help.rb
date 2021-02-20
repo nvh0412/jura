@@ -9,6 +9,8 @@ module Jura
       #{Component::Board::Help.render()}
 
       #{Component::Issue::Help.render()}
+      #
+      #{Component::Sprint::Help.render()}
 
       #{Utils.format_bold('# Miscellaneous commands:')}
 

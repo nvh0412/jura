@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 require 'jura/command/board'
 require 'jura/command/issue'
+require 'jura/command/sprint'
 require 'jura/command/help'
 require 'jura/command/exit'
 require 'jura/command/invalid'
@@ -10,6 +11,7 @@ module Jura
     COMMANDS = {
       "board" => -> (sub_cmd, args) { Command::Board.execute!(sub_cmd, args) },
       "issue" => -> (sub_cmd, args) { Command::Issue.execute!(sub_cmd, args) },
+      "sprint" => -> (sub_cmd, args) { Command::Sprint.execute!(sub_cmd, args) },
       "help" => -> (*_args) { Command::Help.execute() },
       "exit" => -> (*_args) { Command::Exit.execute() }
     }
@@ -35,7 +37,8 @@ module Jura
     def generate_suggestions(buffer, command_buffer)
       commands = {
         "board" => %[list select],
-        "issue" => %[list]
+        "issue" => %[list],
+        "sprint" => %[list show]
       }
 
       commands.keys.grep(/^#{Regexp.escape(buffer)}/)

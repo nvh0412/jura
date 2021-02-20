@@ -8,6 +8,7 @@ module Jura
           <<~TEMPLATE.strip
             #{Utils.format_bold("# Available issue commands:")}
             issue list                - Show list of issues in backlog
+            issue mine                - Show list of issues which have assingee is mine
           TEMPLATE
         end
       end

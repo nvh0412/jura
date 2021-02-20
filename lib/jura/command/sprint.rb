@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require 'jura/command/issue/list'
-require 'jura/command/issue/mine'
+require 'jura/command/sprint/list'
+require 'jura/command/sprint/current'
 
 module Jura
   module Command
-    module Issue
+    module Sprint
       def self.execute!(sub_cmd, args)
         case sub_cmd
-        when "mine"
-          Command::Issue::Mine.execute!
+        when "show"
+          Command::Sprint::Current.execute!(args)
         when "list"
-          Command::Issue::List.execute!
+          Command::Sprint::List.execute!
         else
           Command::Invalid.execute("Command not found: #{command.inspect}. Run #{"help".inspect} for more informations")
         end

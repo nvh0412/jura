@@ -4,6 +4,7 @@ $LOAD_PATH.unshift File.expand_path("../lib", __dir__)
 require 'httparty'
 require 'jura'
 require 'tty-prompt'
+require 'tty-table'
 require 'optparse'
 
 Jura::Application.start(ARGV)
