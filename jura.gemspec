@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name         = 'jura'
-  s.version      = '0.0.2'
+  s.version      = '0.0.3'
   s.date         = '2020-09-20'
   s.summary      = "Jura Guarrr!"
   s.description  = "A simple Jira CLI by Ruby"
