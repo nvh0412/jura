@@ -7,7 +7,11 @@ module Jura
 
       def all
         parse_body(
-          Client.get('/board').body
+          Client.get('/board', {
+            headers: {
+              "Authorization" => "Basic #{Token.get_token}"
+            }
+          }).body
         )['values']
       end
 

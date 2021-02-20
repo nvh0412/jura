@@ -13,7 +13,7 @@ module Jura
    ╚█████╔╝╚██████╔╝██║  ██║██║  ██║              ╚█████╔╝██║██║  ██║██║  ██║    ██║  ██║╚██████╔╝██████╔╝   ██║
     ╚════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝               ╚════╝ ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝    ╚═╝  ╚═╝ ╚═════╝ ╚═════╝    ╚═╝
 
-Jura - The interactive CLI application for Jira
+  #{Utils.format_bold(Utils.paint("Jura v#{Jura::VERSION} - Interactive CLI application for Jira", :blue))}
 
         TEMPLATE
       end

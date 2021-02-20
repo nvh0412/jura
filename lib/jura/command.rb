@@ -8,8 +8,8 @@ module Jura
   module Command
     COMMANDS = {
       "board" => -> (sub_cmd, args) { Command::Board.execute!(sub_cmd, args) },
-      "help" => -> (sub_cmd, args) { Command::Help.execute() },
-      "exit" => -> (sub_cmd, args) { Command::Exit.execute() }
+      "help" => -> (*_args) { Command::Help.execute() },
+      "exit" => -> (*_args) { Command::Exit.execute() }
     }
 
     def self.execute!(cmd_buffer)

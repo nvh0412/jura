@@ -18,14 +18,17 @@ module Jura
       prompt = TTY::Prompt.new
 
       prompt.say(Jura::Component::Logo.render)
+      prompt.say(Jura::Component::Help.render)
 
       config = load_config
 
       if config.empty?
-        config_credentials(prompt)
+        config = config_credentials(prompt)
       else
         prompt.say("Welcome back!, " + Utils.paint(config['email'], :green) + "\n\n")
       end
+
+      Jura::Configuration.instance.set_config(config)
 
       loop do
         command_buffer = Readline.readline("\e[15;48;5;27m Jura Guarrr! \e[0m > ", true)
@@ -33,8 +36,6 @@ module Jura
         Jura::Command.execute!(command_buffer.strip())
       end
     rescue Interrupt
-      Command::Exit.execute
-    rescue HTTParty::ResponseError => e
       Command::Exit.execute
     end
 
@@ -65,14 +66,20 @@ module Jura
         q.required true
       end
 
+      config = {}
+
       if Jura::Api::Token.verify?(email, token)
         prompt.say("Logged in as #{email}\n", color: :green)
         prompt.say("Configuration has been saved to " + Utils.paint(CONFIG_FILE_PATH, :green) + "\n")
 
-        File.write(File.expand_path(CONFIG_FILE_PATH), { email: email, token: Base64.urlsafe_encode64("#{email}:#{token}") }.to_json)
+        config = { 'email' => email, 'token' => Base64.urlsafe_encode64("#{email}:#{token}") }
+
+        File.write(File.expand_path(CONFIG_FILE_PATH), config.to_json)
       else
         prompt.say("Your token or email is invalid", color: :red)
       end
+
+      config
     end
   end
 end

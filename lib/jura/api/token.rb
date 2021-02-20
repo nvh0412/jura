@@ -19,6 +19,10 @@ module Jura
         false
       end
 
+      def get_token
+        Jura::Configuration.instance.config_obj['token']
+      end
+
       private
 
       def parse_body(body)
