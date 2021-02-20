@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name         = 'jura'
-  s.version      = '0.0.4'
+  s.version      = '0.0.5'
   s.date         = '2020-09-20'
   s.summary      = "Jura Guarrr!"
   s.description  = "A simple Jira CLI by Ruby"
@@ -20,6 +20,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "tty-table", "~> 0.12.0"
   s.add_runtime_dependency "tty-box", "~> 0.7.0"
   s.add_runtime_dependency "tty-markdown", "~> 0.7.0"
-  s.add_runtime_dependency "tty-screen", "~> 0.0.1"
+  s.add_runtime_dependency "tty-screen", "~> 0.8.1"
   s.add_runtime_dependency "pastel", "~> 0.8.0"
 end
