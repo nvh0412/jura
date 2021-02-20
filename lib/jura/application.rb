@@ -31,6 +31,8 @@ module Jura
         command_buffer = Readline.readline("\e[15;48;5;27m Jura Guarrr! \e[0m > ", true)
 
         Jura::Command.execute!(command_buffer.strip())
+      rescue IndexError, NoMethodError => _e
+        Command::Invalid.execute("Something went wrong, please try with another command")
       end
     rescue Interrupt
       Command::Exit.execute

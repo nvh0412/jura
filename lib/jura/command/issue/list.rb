@@ -3,11 +3,8 @@
 module Jura
   module Command
     module Issue
-      class List
+      class List < Base
         def self.execute!
-          config = Jura::Configuration.instance.load_config
-          board_id = config['selected_board_id']
-
           issues = Api::Issue.all(board_id)
           puts Component::Issue.render(issues)
         end

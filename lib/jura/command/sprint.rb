@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
+require 'jura/command/sprint/base'
 require 'jura/command/sprint/list'
-require 'jura/command/sprint/current'
+require 'jura/command/sprint/show'
 
 module Jura
   module Command
@@ -9,7 +10,7 @@ module Jura
       def self.execute!(sub_cmd, args)
         case sub_cmd
         when "show"
-          Command::Sprint::Current.execute!(args)
+          Command::Sprint::Show.execute!(args)
         when "list"
           Command::Sprint::List.execute!
         else

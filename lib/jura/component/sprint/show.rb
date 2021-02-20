@@ -5,7 +5,14 @@ module Jura
     module Sprint
       class Show
         def self.render(issues)
-					table = TTY::Table.new(header: ["TO DO", "IN PROGRESS", "IN REVIEW", "DONE"])
+					table = TTY::Table.new(
+            header: [
+              "TO DO",
+              Jura::Utils.paint("IN PROGRESS", :blue),
+              Jura::Utils.paint("IN REVIEW", :purple),
+              Jura::Utils.paint("DONE", :green)
+            ]
+          )
 					convertIssues(table, issues)
 					table.render :unicode, resize: true, column_widths: [25, 25, 25, 25] do |renderer|
 						renderer.border.separator = :each_row

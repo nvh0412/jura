@@ -3,11 +3,8 @@
 module Jura
   module Command
     module Sprint
-      class List
+      class List < Base
         def self.execute!
-          config = Jura::Configuration.instance.load_config
-          board_id = config['selected_board_id']
-
           sprints = Api::Sprint.all(board_id)
           puts Component::Sprint.render(sprints)
         end

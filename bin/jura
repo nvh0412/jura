@@ -5,6 +5,10 @@ require 'httparty'
 require 'jura'
 require 'tty-prompt'
 require 'tty-table'
+require 'tty-box'
+require 'tty-markdown'
+require 'tty-screen'
+require 'pastel'
 require 'optparse'
 
 Jura::Application.start(ARGV)

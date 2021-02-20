@@ -9,6 +9,7 @@ module Jura
             #{Utils.format_bold("# Available issue commands:")}
             issue list                - Show list of issues in backlog
             issue mine                - Show list of issues which have assingee is mine
+            issue show <issue_id>     - Show details of an issue
           TEMPLATE
         end
       end

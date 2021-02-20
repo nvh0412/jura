@@ -20,6 +20,18 @@ module Jura
         )['issues']
       end
 
+      def show(issue_id)
+        options = {
+          headers: {
+            "Authorization" => "Basic #{Token.get_token}"
+          }
+        }
+
+        url = "/issue/#{issue_id}"
+
+        parse_body(Client.get(url, options).body)
+      end
+
       private
 
       def parse_body(body)

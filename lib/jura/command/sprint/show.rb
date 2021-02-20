@@ -3,7 +3,7 @@
 module Jura
   module Command
     module Sprint
-      class Current
+      class Show < Base
         def self.execute!(args)
           if args.length != 1
             return
@@ -11,11 +11,10 @@ module Jura
 
           sprint_id = args[0]
 
-          config = Jura::Configuration.instance.load_config
-          board_id = config['selected_board_id']
-
           issues = Api::Sprint.show(board_id, sprint_id)
           puts Component::Sprint::Show.render(issues)
+        rescue HTTParty::ResponseError => _e
+          Command::Invalid.execute("Something went wrong, please try with another command")
         end
       end
     end

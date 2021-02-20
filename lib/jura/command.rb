@@ -32,6 +32,9 @@ module Jura
       puts '' # Empty line
       command.call(sub_cmd, args)
       puts '' # Empty line
+    rescue Command::Board::RequiredBoardIdError => _
+      puts 'Please select a board first!'
+      Command::Board.execute!('select', [])
     end
 
     def generate_suggestions(buffer, command_buffer)
