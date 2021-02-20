@@ -6,8 +6,6 @@ module Jura
   module Application
     extend self
 
-    CONFIG_FILE_PATH = "~/.jura.config.json"
-
     def start(args)
       Readline.completion_append_character = " "
 
@@ -20,12 +18,13 @@ module Jura
       prompt.say(Jura::Component::Logo.render)
       prompt.say(Jura::Component::Help.render)
 
-      config = load_config
+      config = Jura::Configuration.instance.load_config
 
       if config.empty?
         config = config_credentials(prompt)
       else
         prompt.say("Welcome back!, " + Utils.paint(config['email'], :green) + "\n\n")
+        prompt.say("Your selected board is " + Utils.paint(config['selected_board_name'], :green) + "\n\n") unless config['selected_board_id'].nil?
       end
 
       Jura::Configuration.instance.set_config(config)
@@ -37,16 +36,6 @@ module Jura
       end
     rescue Interrupt
       Command::Exit.execute
-    end
-
-    def load_config
-      config_path = File.expand_path(CONFIG_FILE_PATH)
-
-      if File.exist?(config_path)
-        JSON.parse(File.read(config_path))
-      else
-        {}
-      end
     end
 
     def config_credentials(prompt)
@@ -74,7 +63,7 @@ module Jura
 
         config = { 'email' => email, 'token' => Base64.urlsafe_encode64("#{email}:#{token}") }
 
-        File.write(File.expand_path(CONFIG_FILE_PATH), config.to_json)
+        Jura::Configuration.instance.save_config(config)
       else
         prompt.say("Your token or email is invalid", color: :red)
       end
