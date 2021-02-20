@@ -8,7 +8,7 @@ module Jura
           <<~TEMPLATE.strip
             #{Utils.format_bold("# Available board commands:")}
             board list                - Show list of boards
-            board select <board_key>  - Select board
+            board select              - Select board
           TEMPLATE
         end
       end

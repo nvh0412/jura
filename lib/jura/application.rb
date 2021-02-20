@@ -57,7 +57,7 @@ module Jura
 
       if Jura::Api::Token.verify?(email, token)
         prompt.say("Logged in as #{email}\n", color: :green)
-        prompt.say("Configuration has been saved to " + Utils.paint(CONFIG_FILE_PATH, :green) + "\n")
+        prompt.say("Configuration has been saved to " + Utils.paint(Configuration::CONFIG_FILE_PATH, :green) + "\n")
 
         config = { 'email' => email, 'token' => Base64.urlsafe_encode64("#{email}:#{token}") }
 

@@ -8,7 +8,7 @@ module Jura
           <<~TEMPLATE.strip
             #{Utils.format_bold("# Available sprint commands:")}
             sprint list                - Show list of sprints
-            sprint show                - Show list of issues of 1 sprint
+            sprint show <sprint_id>    - Show list of issues of 1 sprint
           TEMPLATE
         end
       end
