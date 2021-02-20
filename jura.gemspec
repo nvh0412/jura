@@ -15,6 +15,11 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
 
   s.required_ruby_version = "~> 2.5"
-  s.add_runtime_dependency "tty-prompt", "~> 0.22"
   s.add_runtime_dependency "httparty", "~> 0.18.1"
+  s.add_runtime_dependency "tty-prompt", "~> 0.22"
+  s.add_runtime_dependency "tty-table", "~> 0.12.0"
+  s.add_runtime_dependency "tty-box", "~> 0.7.0"
+  s.add_runtime_dependency "tty-markdown", "~> 0.7.0"
+  s.add_runtime_dependency "tty-screen", "~> 0.0.1"
+  s.add_runtime_dependency "pastel", "~> 0.0.0"
 end
