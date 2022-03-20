@@ -27,9 +27,9 @@ module Jura
           }
         }
 
-        url = "/issue/#{issue_id}"
+        url = "https://employmenthero.atlassian.net/rest/api/2/issue/#{issue_id}"
 
-        parse_body(Client.get(url, options).body)
+        parse_body(HTTParty.get(url, options).body)
       end
 
       private
