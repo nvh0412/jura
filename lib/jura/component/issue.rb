@@ -12,6 +12,10 @@ module Jura
         TEMPLATE
       end
 
+      def self.render_line(issue)
+        render_issue(issue)
+      end
+
       private
 
       def self.render_issue(issue)

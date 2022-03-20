@@ -25,6 +25,7 @@ GEM
       tty-cursor (~> 0.7)
     tty-color (0.6.0)
     tty-cursor (0.7.1)
+    tty-link (0.1.1)
     tty-markdown (0.7.0)
       kramdown (>= 1.16.2, < 3.0)
       pastel (~> 0.8)
@@ -55,6 +56,7 @@ DEPENDENCIES
   httparty (~> 0.18.1)
   pastel
   tty-box
+  tty-link
   tty-markdown
   tty-prompt
   tty-screen

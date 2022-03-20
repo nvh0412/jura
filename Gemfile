@@ -10,6 +10,7 @@ gem "httparty", "~> 0.18.1"
 gem 'tty-prompt'
 gem "tty-table"
 gem "tty-box"
+gem "tty-link"
 gem 'tty-markdown'
 gem 'tty-screen'
 gem "pastel"
