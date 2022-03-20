@@ -2,6 +2,7 @@
 
 require "jura/component/issue/help"
 require "jura/component/issue/show"
+require "jura/component/issue/change_column"
 
 module Jura
   module Component
