@@ -16,6 +16,7 @@ module Jura
 
         !values.nil?
       rescue HTTParty::ResponseError => e
+        p e
         false
       end
 

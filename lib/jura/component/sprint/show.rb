@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'byebug'
+
 module Jura
   module Component
     module Sprint
@@ -14,7 +16,7 @@ module Jura
             ]
           )
 					convertIssues(table, issues)
-					table.render :unicode, resize: true, column_widths: [25, 25, 25, 25] do |renderer|
+					table.render :unicode, multiline: true, resize: true, column_widths: [25, 25, 25, 25], padding: [0,1,0,1] do |renderer|
 						renderer.border.separator = :each_row
 					end
         end
@@ -36,7 +38,7 @@ module Jura
         end
 
         def self.render_issue(issue)
-          "#{issue['key']} - #{issue['fields']['summary']}"
+          "#{issue['key']} - #{issue['fields']['summary']}\n#{Jura::Utils.paint(issue.dig('fields','assignee','displayName'), :green)}"
         end
       end
     end
