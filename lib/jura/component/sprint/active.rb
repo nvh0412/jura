@@ -13,6 +13,14 @@ module Jura
           end
 
           issues = Api::Sprint.show(board_id, sprint['id'])
+
+          selected_issues = issues.select do |i|
+            status = i.dig('fields','status', 'name')
+
+            column['name'].downcase == status.downcase
+          end
+
+          puts Component::Issue.render(selected_issues)
         end
       end
     end
