@@ -3,6 +3,7 @@
 require 'jura/command/sprint/base'
 require 'jura/command/sprint/list'
 require 'jura/command/sprint/show'
+require 'jura/command/sprint/active'
 
 module Jura
   module Command
@@ -13,6 +14,8 @@ module Jura
           Command::Sprint::Show.execute!(args)
         when "list"
           Command::Sprint::List.execute!
+        when "active"
+          Command::Sprint::Active.execute!
         else
           Command::Invalid.execute("Command not found: #{command.inspect}. Run #{"help".inspect} for more informations")
         end

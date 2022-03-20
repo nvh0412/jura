@@ -15,6 +15,18 @@ module Jura
         )['values']
       end
 
+      def configuration(board_id)
+        options = {
+          headers: {
+            "Authorization" => "Basic #{Token.get_token}"
+          }
+        }
+
+        url = "/board/#{board_id}/configuration"
+
+        parse_body(Client.get(url, options).body)
+      end
+
       private
 
       def parse_body(body)
