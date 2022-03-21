@@ -3,11 +3,11 @@
 module Jura
   module Component
     class Spinner
-      def self.render
-        spinner = TTY::Spinner.new("[:spinner] Loading ...", format: :pulse_2, clear: true)
+      def self.render(success_message = 'Loading', clear: true)
+        spinner = TTY::Spinner.new("[:spinner] #{success_message}", format: :pulse_2, clear: clear)
         spinner.auto_spin
         res = yield
-        spinner.stop
+        success_message ? spinner.success(success_message) : spinner.stop
         res
       end
     end

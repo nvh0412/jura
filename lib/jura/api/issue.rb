@@ -27,9 +27,42 @@ module Jura
           }
         }
 
-        url = "https://employmenthero.atlassian.net/rest/api/2/issue/#{issue_id}"
+        url = "https://employmenthero.atlassian.net/rest/api/3/issue/#{issue_id}"
 
         parse_body(HTTParty.get(url, options).body)
+      end
+
+      def get_estimation(issue_id, board_id)
+        options = {
+          headers: {
+            "Authorization" => "Basic #{Token.get_token}"
+          }
+        }
+
+        url = "/issue/#{issue_id}/estimation?boardId=#{board_id}"
+
+        parse_body(
+          Client.get(url, options).body
+        )
+      end
+
+      def estimate(issue_id, point)
+        options = {
+          headers: {
+            "Authorization" => "Basic #{Token.get_token}"
+          },
+          body: {
+            value: point
+          }.to_json
+        }
+
+        board_id = Jura::Configuration.instance.load_config['selected_board_id']
+
+        url = "/issue/#{issue_id}/estimation?boardId=#{board_id}"
+
+        parse_body(
+          Client.put(url, options).body
+        )
       end
 
       private

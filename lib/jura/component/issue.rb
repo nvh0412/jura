@@ -3,6 +3,7 @@
 require "jura/component/issue/help"
 require "jura/component/issue/show"
 require "jura/component/issue/change_column"
+require "jura/component/issue/estimate"
 
 module Jura
   module Component
