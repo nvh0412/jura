@@ -6,6 +6,8 @@ module Jura
       class Show
         def self.render(issue)
           issue_id = issue['key']
+          key = Issue.convert_key(issue)
+          url = URI.parse(issue['self']).host
           project = issue['fields']['project']['name']
           box = TTY::Box.frame(
             border: :thick,
@@ -16,7 +18,7 @@ module Jura
             <<~TEMPLATE
             #{Jura::Utils.format_bold(issue['fields']['summary'])}
 
-            #{Jura::Utils.format_bold('URL')}: #{issue['self']}
+            #{Jura::Utils.format_bold('URL')}: #{TTY::Link.link_to("Issue Link", "https://#{url}/browse/#{key}")}
 
             #{Jura::Utils.format_bold('Description')}
 

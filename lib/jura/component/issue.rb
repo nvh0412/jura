@@ -17,6 +17,11 @@ module Jura
         render_issue(issue)
       end
 
+      def self.convert_key(issue)
+        kws = issue['key'].split('-')
+        "#{kws[0]}-#{(kws[1].rjust(3, ' '))}"
+      end
+
       private
 
       def self.render_issue(issue)
@@ -37,11 +42,6 @@ module Jura
         else
           p.decorate(status,:white)
         end
-      end
-
-      def self.convert_key(issue)
-        kws = issue['key'].split('-')
-        "#{kws[0]}-#{(kws[1].rjust(3, ' '))}"
       end
     end
   end

@@ -13,7 +13,9 @@ module Jura
             end
           end
 
-          issues = Api::Sprint.show(board_id, sprint['id'])
+          issues = Spinner.render do
+            Api::Sprint.show(board_id, sprint['id'])
+          end
 
           selected_issues = issues.select do |i|
             status = i.dig('fields','status', 'name')

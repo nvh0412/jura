@@ -6,7 +6,11 @@ module Jura
       class Select
         def self.execute
           prompt = TTY::Prompt.new
-          boards = Api::Board.all
+
+          boards = Jura::Component::Spinner.render do
+            Api::Board.all
+          end
+
           board = prompt.select("Choose your board?", filter: true, per_page: 10) do |menu|
             boards.each do |b|
               menu.choice b['location']['displayName'], b

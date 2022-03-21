@@ -5,9 +5,13 @@ module Jura
     module Sprint
       class Active < Base
         def self.execute!
-          sprints = Api::Sprint.all(board_id)
+          sprints = Component::Spinner.render do
+            Api::Sprint.all(board_id)
+          end
 
-          configuration = Api::Board.configuration(board_id)
+          configuration = Component::Spinner.render do
+            Api::Board.configuration(board_id)
+          end
 
           active_sprint = sprints.detect { |sprint| sprint['state'] == 'active' }
           puts Component::Sprint::Active.render(board_id, active_sprint, configuration)

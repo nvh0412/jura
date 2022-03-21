@@ -8,6 +8,8 @@ require 'tty-table'
 require 'tty-box'
 require 'tty-markdown'
 require 'tty-screen'
+require 'tty-link'
+require 'tty-spinner'
 require 'pastel'
 require 'optparse'
 
