@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "jura/component/sprint/help"
-require "jura/component/sprint/show"
 require "jura/component/sprint/active"
 
 module Jura

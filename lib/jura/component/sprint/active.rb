@@ -29,32 +29,8 @@ module Jura
             end
           end
 
-          display_submenu(prompt, issue)
-        end
-
-        def self.display_submenu(prompt, issue)
-          action = prompt.select("Choose your action") do |menu|
-            menu.choice name: "View", value: 1
-            menu.choice name: "Estimate the story point", value: 2
-            menu.choice name: "Change the status/column", value: 3
-            menu.choice name: "Move it back to the backlog", value: 4
-            menu.choice name: "Cancel", value: 5
-          end
-
-          case action
-          when 1
-            puts Component::Issue::Show.render(issue)
-            display_submenu(prompt, issue)
-          when 2
-            puts Component::Issue::Estimate.render(issue)
-            display_submenu(prompt, issue)
-          when 3
-            puts Component::Issue::ChangeColumn.render(issue)
-            display_submenu(prompt, issue)
-          when 4
-          else
-            puts "Do nothing!"
-          end
+          Control::Sprint.instance.execute_command("display_submenu", issue)
+          puts ""
         end
       end
     end

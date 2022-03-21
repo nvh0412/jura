@@ -4,7 +4,7 @@ module Jura
   module Command
     module Sprint
       class Active < Base
-        def self.execute!
+        def self.execute!(opts = nil)
           sprints = Component::Spinner.render do
             Api::Sprint.all(board_id)
           end

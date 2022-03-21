@@ -27,15 +27,18 @@ module Jura
 
       Jura::Configuration.instance.set_config(config)
 
+      Jura::RootControl.instance.config_commands
+      Jura::Control::Sprint.instance.config_commands
+
       loop do
         command_buffer = Readline.readline("\e[15;48;5;27m Jura Guarrr! \e[0m > ", true)
 
-        Jura::Command.execute!(command_buffer.strip())
+        Jura::CommandHandler.call(command_buffer.strip())
       rescue IndexError, NoMethodError => _e
         Command::Invalid.execute("Something went wrong, please try with another command")
       end
     rescue Interrupt
-      Command::Exit.execute
+      Command::Exit.execute!
     end
 
     def config_credentials(prompt)

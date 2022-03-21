@@ -7,34 +7,24 @@ require 'jura/command/exit'
 require 'jura/command/invalid'
 
 module Jura
-  module Command
-    COMMANDS = {
-      "board" => -> (sub_cmd, args) { Command::Board.execute!(sub_cmd, args) },
-      "issue" => -> (sub_cmd, args) { Command::Issue.execute!(sub_cmd, args) },
-      "sprint" => -> (sub_cmd, args) { Command::Sprint.execute!(sub_cmd, args) },
-      "help" => -> (*_args) { Command::Help.execute() },
-      "exit" => -> (*_args) { Command::Exit.execute() }
-    }
-
-    def self.execute!(cmd_buffer)
+  module CommandHandler
+    def self.call(cmd_buffer)
       cmd_name, sub_cmd, *args = cmd_buffer.to_s.strip.split(" ")
 
       if cmd_name.nil? || cmd_name.empty?
         # TODO: return and execute empty command error
       end
 
-      command = COMMANDS[cmd_name]
-
-      if command.nil?
-        return Command::Invalid.execute("Command not found: #{command.inspect}. Run #{"help".inspect} for more informations")
+      unless Jura::RootControl.instance.support_command?(cmd_name)
+        return Command::Invalid.execute("Command not found: #{cmd_name}. Run #{"help".inspect} for more informations")
       end
 
       puts '' # Empty line
-      command.call(sub_cmd, args)
+      Jura::RootControl.instance.execute_command(cmd_name, sub_cmd: sub_cmd, args: args)
       puts '' # Empty line
     rescue Command::Board::RequiredBoardIdError => _
       puts 'Please select a board first!'
-      Command::Board.execute!('select', [])
+      Jura::RootControl.execute_command('select')
     end
 
     def generate_suggestions(buffer, command_buffer)
@@ -46,5 +36,6 @@ module Jura
 
       commands.keys.grep(/^#{Regexp.escape(buffer)}/)
     end
+
   end
 end
