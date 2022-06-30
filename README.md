@@ -1,7 +1,13 @@
 # Jura
 A simple Jira CLI app by Ruby
 
+[![asciicast](https://asciinema.org/a/qJ2dC9mkJAK8tOhSGjgA1gFx2.svg)](https://asciinema.org/a/qJ2dC9mkJAK8tOhSGjgA1gFx2)
+
 ## Install Jura
+
+```bash
+gem install ruby_jard
+```
 
 ## Contributing
 
