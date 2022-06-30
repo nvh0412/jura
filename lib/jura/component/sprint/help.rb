@@ -7,6 +7,7 @@ module Jura
         def self.render
           <<~TEMPLATE.strip
             #{Utils.format_bold("# Available sprint commands:")}
+            sprint active              - Show the active sprint
             sprint list                - Show list of sprints
             sprint show <sprint_id>    - Show list of issues of 1 sprint
           TEMPLATE
